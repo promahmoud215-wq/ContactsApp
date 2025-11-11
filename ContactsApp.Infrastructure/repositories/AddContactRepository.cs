@@ -13,11 +13,12 @@ namespace ContactsApp.Infrastructure.Repositories
             using var connection = new SqlConnection(DatabaseInitializer.GetConnectionString());
             connection.Open();
 
-            const string query = @"INSERT INTO Contacts (Id, Name, Phone, Email) 
-                                   VALUES (@Id, @Name, @Phone, @Email)";
+            const string query = @"INSERT INTO Contacts (FirstName, LastName, Email, Phone, Address, CountryID) 
+                                   VALUES (@FirstName, @LastName, @Email, @Phone, @Address, @CountryID)";
             using var cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@Id", contact.Id);
-            cmd.Parameters.AddWithValue("@Name", contact.Name);
+            cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", contact.LastName);
             cmd.Parameters.AddWithValue("@Phone", contact.Phone);
             cmd.Parameters.AddWithValue("@Email", (object?)contact.Email ?? DBNull.Value);
             cmd.ExecuteNonQuery();
