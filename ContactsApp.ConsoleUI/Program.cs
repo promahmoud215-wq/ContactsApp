@@ -7,7 +7,7 @@ namespace ContactsApp
 {
     internal class Program
     {
-//
+
         static void Main(string[] args)
         {
             DatabaseInitializer.Initialize();
