@@ -15,12 +15,12 @@ namespace ContactsApp.ConsoleUI.Features.AddContact
             if (contact is not null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                _view.ShowMessage($"✅ Contact '{contact.Name}' added successfully!");
+                _view.ShowMessage($"✅ Contact '{contact.Name}' added successfully!", ConsoleColor.Green);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                _view.ShowMessage("❌ Failed to add contact.");
+                _view.ShowMessage("❌ Failed to add contact.", ConsoleColor.Red);
             }
             Console.ResetColor();
         }

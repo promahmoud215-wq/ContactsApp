@@ -23,13 +23,13 @@ namespace ContactsApp.ConsoleUI.Features.AddContact
                 var input = _view.Render();
 
                 var useCase = new AddContactUseCase(_repository);
-                var result = useCase.Execute(input.Name, input.Phone, input.Email);
+                var result = useCase.Execute(input.FirstName, input.LastName, input.Email, input.Phone, input.Address, input.CountryId);
 
                 _presenter.ShowAddResult(result);
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"❌ Error: {ex.Message}");
+                _view.ShowMessage($"❌ Error: {ex.Message}", ConsoleColor.Red);
             }
         }
     }

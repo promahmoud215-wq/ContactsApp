@@ -13,9 +13,9 @@ namespace ContactsApp.Core.UseCases.Contacts
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Contact Execute(string name, string phone, string? email = null)
+        public Contact Execute(string FirstName, string LastName, string? email = null, string phone, string? address = null, int countryId = 0)
         {
-            var contact = new Contact(name, phone, email);
+            var contact = new Contact(FirstName, LastName, phone, email, address, countryId);
             ContactValidator.Validate(contact);
             _repository.Add(contact);
             return contact; 
