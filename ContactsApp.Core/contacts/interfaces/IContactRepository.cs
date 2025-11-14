@@ -4,9 +4,9 @@ namespace ContactsApp.Core.Contacts.Interfaces
 {
     public interface IContactRepository
     {
-        void Add(Contact contact);
-        //void Update(Contact contact);
-        //void Delete(Guid id);
+        void AddContact(Contact contact);
+        //void DeleteContact(Guid id);
+        //void UpdateContact(Contact contact);
         //Contact? GetById(Guid id);
         //IEnumerable<Contact> GetAll();
         //IEnumerable<Contact> Search(string keyword);

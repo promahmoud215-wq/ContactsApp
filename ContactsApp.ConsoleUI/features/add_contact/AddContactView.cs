@@ -1,4 +1,6 @@
 using Microsoft.IdentityModel.Tokens;
+using System.Net.Mail;
+using ContactsApp.Core.Contacts.UseCases.AddContact;
 
 namespace ContactsApp.ConsoleUI.Features.AddContact
 {
@@ -13,59 +15,30 @@ namespace ContactsApp.ConsoleUI.Features.AddContact
         }
 
 
-        public (string firstName, string lastName, string? email, string phone, string? address, int countryId) Render()
+        public AddContactInput Render()
         {
-            Console.WriteLine();
             Console.WriteLine("\n=== Add New Contact ===\n");
 
-            string firstName;
-            do
-            {
-                Console.Write("Enter FirstName (3–30 chars): ");
-                firstName = Console.ReadLine() ?? string.Empty;
-            } while (firstName.Length < 3 || firstName.Length > 30 || string.IsNullOrWhiteSpace(firstName));
+            Console.Write("Enter FirstName: ");
+            var firstName = Console.ReadLine() ?? string.Empty;
 
-            string lastName;
-            do
-            {
-                Console.Write("Enter LastName (3–30 chars): ");
-                lastName = Console.ReadLine() ?? string.Empty;
-            } while (lastName.Length < 3 || lastName.Length > 30 || string.IsNullOrWhiteSpace(lastName));
+            Console.Write("Enter LastName: ");
+            var lastName = Console.ReadLine() ?? string.Empty;
 
-            string phone;
-            do
-            {
-                Console.Write("Enter Phone: ");
-                phone = Console.ReadLine() ?? string.Empty;
-            } while (string.IsNullOrWhiteSpace(phone) || !phone.All(char.IsDigit));
-            //phone.Any(c => !char.IsDigit(c))
+            Console.Write("Enter Phone: ");
+            var phone = Console.ReadLine() ?? string.Empty;
 
-
-            string email;
-            Console.Write("Enter Email: ");
-            email = Console.ReadLine() ?? string.Empty;
-
-            while (!email.Contains("@") || !email.Contains(".") && (!string.IsNullOrWhiteSpace(email)))
-            {
-                Console.WriteLine("Invalid email format. Please try again.");
-                Console.Write("Enter Email: ");
-                email = Console.ReadLine() ?? string.Empty;
-            }
+            Console.Write("Enter Email (optional): ");
+            var email = Console.ReadLine();
 
             Console.Write("Enter Address (optional): ");
-            string? address = Console.ReadLine();
+            var address = Console.ReadLine();
 
-            int countryId;
-            do
-            {
-                Console.Write("Enter CountryId (numeric): ");
-            } while (!int.TryParse(Console.ReadLine(), out countryId));
+            Console.Write("Enter CountryId (numeric): ");
+            int.TryParse(Console.ReadLine(), out var countryId);
 
-            Console.WriteLine("\nContact successfully captured.\n");
-
-            Console.WriteLine();
-            return (firstName.Trim(), lastName.Trim(), email?.Trim(), phone.Trim(), address?.Trim(), countryId);
+            return new AddContactInput(firstName, lastName, phone, email, address, countryId);
         }
-    }
 
+    }
 }

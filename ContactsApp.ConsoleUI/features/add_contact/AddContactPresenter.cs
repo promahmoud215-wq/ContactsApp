@@ -1,4 +1,4 @@
-﻿using ContactsApp.Core.Contacts.Entities;
+﻿using ContactsApp.Core.Contacts.UseCases.AddContact;
 
 namespace ContactsApp.ConsoleUI.Features.AddContact
 {
@@ -10,12 +10,19 @@ namespace ContactsApp.ConsoleUI.Features.AddContact
         {
             _view = view ?? throw new ArgumentNullException(nameof(view));
         }
-        public void ShowAddResult(Contact? contact)
+        public void ShowAddResult(AddContactOutput? output)
         {
-            if (contact is not null)
+            if (output is not null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                _view.ShowMessage($"✅ Contact '{contact.Name}' added successfully!", ConsoleColor.Green);
+                _view.ShowMessage(
+                    $"✅ Contact:\n" +
+                    $"FullName: '{output.FullName}' \n" +
+                    $"Phone: '{output.Phone}' \n" +
+                    $"Email: '{output.Email}' \n" +
+                    $"Address: '{output.Address}' \n" +
+                    $"CountryId: '{output.CountryId}' \n" +
+                    $"added successfully!\n", ConsoleColor.Green);
             }
             else
             {

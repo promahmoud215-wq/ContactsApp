@@ -1,5 +1,5 @@
 ﻿using ContactsApp.Core.Contacts.Interfaces;
-using ContactsApp.Core.UseCases.Contacts; 
+using ContactsApp.Core.Contacts.UseCases.AddContact;
 
 namespace ContactsApp.ConsoleUI.Features.AddContact
 { 
@@ -17,14 +17,13 @@ namespace ContactsApp.ConsoleUI.Features.AddContact
         }
 
         public void Run()
-        {
+        { 
+            Console.WriteLine();
             try
             {
                 var input = _view.Render();
-
                 var useCase = new AddContactUseCase(_repository);
-                var result = useCase.Execute(input.FirstName, input.LastName, input.Email, input.Phone, input.Address, input.CountryId);
-
+                var result = useCase.Execute(input);
                 _presenter.ShowAddResult(result);
             }
             catch (Exception ex)

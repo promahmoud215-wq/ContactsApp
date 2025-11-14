@@ -1,4 +1,3 @@
-// AddContactRepository.cs
 using ContactsApp.Core.Contacts.Entities;
 using ContactsApp.Core.Contacts.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -8,7 +7,7 @@ namespace ContactsApp.Infrastructure.Repositories
 {
     public partial class ContactRepository : IContactRepository
     {
-        public void Add(Contact contact)
+        public void AddContact(Contact contact)
         {
             using var connection = new SqlConnection(DatabaseInitializer.GetConnectionString());
             connection.Open();

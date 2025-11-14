@@ -12,47 +12,52 @@ namespace ContactsApp.Core.Contacts.Entities
         
         public Contact(string firstName, string lastName, string phone, string? email = null, string? address = null, int countryId = 0)
         {
-            SetFirstName(firstName, lastName);
+            SetFirstName(firstName);
             SetLastName(lastName);
             SetPhone(phone);
             SetEmail(email);
             SetAddress(address);
             SetCountryId(countryId);
         }
+         
 
-        public void SetFirstName(string firstName, string lastName)
+        public void SetFirstName(string firstName)
         {
-            if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentException("FirstName cannot be empty.");
+            if (string.IsNullOrWhiteSpace(firstName) || firstName.Length < 3 || firstName.Length > 30)
+                throw new ArgumentException("First name must be between 3 and 30 characters.");
             FirstName = firstName.Trim();
         }
+
         public void SetLastName(string lastName)
         {
-            if (string.IsNullOrWhiteSpace(lastName))
-                throw new ArgumentException("Last name cannot be empty.");
+            if (string.IsNullOrWhiteSpace(lastName) || lastName.Length < 3 || lastName.Length > 30)
+                throw new ArgumentException("Invalid Last name.");
             LastName = lastName.Trim();
         }
         public void SetPhone(string phone)
         {
-            if (string.IsNullOrWhiteSpace(phone) )
-                throw new ArgumentException("Phone number cannot be empty.");
+            if (string.IsNullOrWhiteSpace(phone) || !phone.All(char.IsDigit))
+                throw new ArgumentException("Invalid phone number.");
             Phone = phone.Trim();
         }
 
         public void SetEmail(string? email)
         {
-            if (email != null && (!email.Contains('@') || !email.Contains('.')))
+            if (!string.IsNullOrWhiteSpace(email) && (!email.Contains('@') || !email.Contains('.')))
                 throw new ArgumentException("Invalid email format.");
-            Email = email?.Trim();
+            Email = string.IsNullOrWhiteSpace(email) ? null : email.Trim();
         }
 
         public void SetAddress(string? address)
         {
-            Address = address?.Trim();
+            Address = string.IsNullOrWhiteSpace(address) ? null : address.Trim();
         }
         
         public void SetCountryId(int countryId)
         {
+
+            if (countryId < 0 || countryId > 4)
+                throw new ArgumentException("Invalid CountryId.");
             CountryId = countryId;
         }
 

@@ -1,9 +1,4 @@
 using ContactsApp.ConsoleUI.Features.AddContact;
-//using ContactsApp.ConsoleUI.Features.DeleteContact;
-//using ContactsApp.ConsoleUI.Features.SearchContact;
-//using ContactsApp.ConsoleUI.Features.UpdateContact;
-//using ContactsApp.ConsoleUI.Features.ShowAllContacts;
-//using ContactsApp.ConsoleUI.Features.Exit;
 using ContactsApp.Core.Contacts.Interfaces;
 
 namespace ContactsApp.ConsoleUI.Features.MainMenu
@@ -28,6 +23,21 @@ namespace ContactsApp.ConsoleUI.Features.MainMenu
                     var addContactController = new AddContactController (_repository);
                     addContactController.Run();
                     break;
+                default:
+                    break;
+            }
+        }
+    }
+}
+
+
+//using ContactsApp.ConsoleUI.Features.DeleteContact;
+//using ContactsApp.ConsoleUI.Features.SearchContact;
+//using ContactsApp.ConsoleUI.Features.UpdateContact;
+//using ContactsApp.ConsoleUI.Features.ShowAllContacts;
+//using ContactsApp.ConsoleUI.Features.Exit;
+
+
                 //case 1:
                 //    var showAllContactsController = new ShowAllContactsController{ };
                 //    showAllContactsController.Run();
@@ -48,9 +58,3 @@ namespace ContactsApp.ConsoleUI.Features.MainMenu
                 //    var exitController = new ExitController { };
                 //    exitController.Run();
                 //    break;
-                default:
-                    break;
-            }
-        }
-    }
-}

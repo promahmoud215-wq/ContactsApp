@@ -25,9 +25,5 @@ namespace ContactsApp.ConsoleUI.Features.MainMenu
             }
             return -1; // Invalid choice
         }
-
-
-
     }
 }
-
